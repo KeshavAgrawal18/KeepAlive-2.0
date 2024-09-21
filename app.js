@@ -23,4 +23,16 @@ setInterval(() => {
     .on("error", (err) => {
       console.error("Error with keep-alive ping:", err.message);
     });
-}, 10 * 60 * 1000); // Ping every 5 minutes (adjust as needed)
+}, 10 * 60 * 1000);
+
+setInterval(() => {
+  https
+    .get(`https://keepalive-2-0.onrender.com/`, (res) => {
+      console.log("Keep-alive ping:", res.statusCode);
+    })
+    .on("error", (err) => {
+      console.error("Error with keep-alive ping:", err.message);
+    });
+}, 10 * 60 * 1000);
+
+// Ping every 10 minutes (adjust as needed)
