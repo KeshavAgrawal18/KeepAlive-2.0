@@ -1,3 +1,4 @@
+const { log } = require("console");
 const express = require("express");
 const https = require("https");
 
@@ -12,6 +13,11 @@ app.get("/", (req, res) => {
 // Start the server
 const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+app.get("/", (req, res) => {
+  console.log("req recieved");
+  res.send("hello World");
 });
 
 // Keep-alive logic (self-ping for HTTPS)
