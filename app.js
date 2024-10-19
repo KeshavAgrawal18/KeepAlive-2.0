@@ -27,7 +27,7 @@ setInterval(() => {
 
 setInterval(() => {
   https
-    .get(`https://keepalive-2-0.onrender.com/`, (res) => {
+    .get(`https://keepalive-2-0-pwar.onrender.com/`, (res) => {
       console.log("Keep-alive ping:", res.statusCode);
     })
     .on("error", (err) => {
