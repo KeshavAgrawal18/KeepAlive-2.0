@@ -17,7 +17,7 @@ const server = app.listen(PORT, () => {
 // Keep-alive logic (self-ping for HTTPS)
 setInterval(() => {
   https
-    .get(`https://polls-ts0t.onrender.com/`, (res) => {
+    .get(`https://doubtpolls.onrender.com/`, (res) => {
       console.log("Keep-alive ping:", res.statusCode);
     })
     .on("error", (err) => {
