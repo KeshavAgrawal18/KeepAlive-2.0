@@ -14,25 +14,25 @@ const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Keep-alive logic (self-ping for HTTPS)
-setInterval(() => {
-  https
-    .get(`https://doubtpolls.onrender.com/`, (res) => {
-      console.log("Keep-alive ping:", res.statusCode);
-    })
-    .on("error", (err) => {
-      console.error("Error with keep-alive ping:", err.message);
-    });
-}, 10 * 60 * 1000);
+// Keep-alive logic
+const urlsToPing = [
+  "https://doubtpolls.onrender.com/",
+  "https://doubtpolls-backend.onrender.com/",
+  "https://keepalive-2-0-pwar.onrender.com/",
+];
 
-setInterval(() => {
-  https
-    .get(`https://keepalive-2-0-pwar.onrender.com/`, (res) => {
-      console.log("Keep-alive ping:", res.statusCode);
-    })
-    .on("error", (err) => {
-      console.error("Error with keep-alive ping:", err.message);
-    });
-}, 10 * 60 * 1000);
+// Function to handle keep-alive pings
+const pingUrls = () => {
+  urlsToPing.forEach((url) => {
+    https
+      .get(url, (res) => {
+        console.log(`Keep-alive ping to ${url}:`, res.statusCode);
+      })
+      .on("error", (err) => {
+        console.error(`Error with keep-alive ping to ${url}:`, err.message);
+      });
+  });
+};
 
-// Ping every 10 minutes (adjust as needed)
+// Ping every 12 minutes
+setInterval(pingUrls, 12 * 60 * 1000);
